@@ -1,5 +1,17 @@
-<div class="center jumbotron">
-  <div class="text-center">
-    <h1>Task List</h1>
+<% if logged_in? %>
+  <dl>
+    <% @tasks.each do |task| %>
+      <dt>タスクID</dt>
+      <dd><%= link_to task.id, task_path(task) %></dd>
+      <dt>タスク</dt>
+      <dd><%= task.content %></dd>
+    <% end %>
+  </dl>
+  <p><%= link_to "新しいタスクを作成する", new_task_path %></p>
+<% else %>
+  <div class="center jumbotron">
+    <div class="text-center">
+      <h1>Task List</h1>
+    </div>
   </div>
-</div>
+<% end %>
